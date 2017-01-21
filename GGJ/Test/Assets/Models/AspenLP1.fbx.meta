@@ -1,116 +1,14 @@
 fileFormatVersion: 2
-guid: a75ca5f54a668ed4daf864993222d7a1
-timeCreated: 1485021516
+guid: 329e09a8841477a4c852c53e485d1248
+timeCreated: 1485033012
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
     100000: //RootNode
-    100002: polySurface1
-    100004: polySurface100
-    100006: polySurface101
-    100008: polySurface102
-    100010: polySurface103
-    100012: polySurface104
-    100014: polySurface105
-    100016: polySurface106
-    100018: polySurface107
-    100020: polySurface108
-    100022: polySurface109
-    100024: polySurface110
-    100026: polySurface111
-    100028: polySurface112
-    100030: polySurface113
-    100032: polySurface114
-    100034: polySurface115
-    100036: polySurface116
-    100038: polySurface93
-    100040: polySurface93 1
-    100042: polySurface94
-    100044: polySurface95
-    100046: polySurface96
-    100048: polySurface97
-    100050: polySurface98
-    100052: polySurface99
-    100054: transform1
-    100056: transform10
-    100058: transform11
-    100060: transform12
-    100062: transform13
-    100064: transform14
-    100066: transform15
-    100068: transform16
-    100070: transform17
-    100072: transform18
-    100074: transform19
-    100076: transform2
-    100078: transform20
-    100080: transform21
-    100082: transform22
-    100084: transform23
-    100086: transform24
-    100088: transform25
-    100090: transform3
-    100092: transform4
-    100094: transform5
-    100096: transform6
-    100098: transform7
-    100100: transform8
-    100102: transform9
     400000: //RootNode
-    400002: polySurface1
-    400004: polySurface100
-    400006: polySurface101
-    400008: polySurface102
-    400010: polySurface103
-    400012: polySurface104
-    400014: polySurface105
-    400016: polySurface106
-    400018: polySurface107
-    400020: polySurface108
-    400022: polySurface109
-    400024: polySurface110
-    400026: polySurface111
-    400028: polySurface112
-    400030: polySurface113
-    400032: polySurface114
-    400034: polySurface115
-    400036: polySurface116
-    400038: polySurface93
-    400040: polySurface93 1
-    400042: polySurface94
-    400044: polySurface95
-    400046: polySurface96
-    400048: polySurface97
-    400050: polySurface98
-    400052: polySurface99
-    400054: transform1
-    400056: transform10
-    400058: transform11
-    400060: transform12
-    400062: transform13
-    400064: transform14
-    400066: transform15
-    400068: transform16
-    400070: transform17
-    400072: transform18
-    400074: transform19
-    400076: transform2
-    400078: transform20
-    400080: transform21
-    400082: transform22
-    400084: transform23
-    400086: transform24
-    400088: transform25
-    400090: transform3
-    400092: transform4
-    400094: transform5
-    400096: transform6
-    400098: transform7
-    400100: transform8
-    400102: transform9
-    2300000: polySurface93
-    3300000: polySurface93
+    2300000: //RootNode
+    3300000: //RootNode
     4300000: polySurface93
     9500000: //RootNode
   materials:
