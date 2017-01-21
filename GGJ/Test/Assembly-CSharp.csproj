@@ -49,6 +49,7 @@
      <Compile Include="Assets\Scripts\ColorListener.cs" />
      <Compile Include="Assets\Scripts\ExpandAndRotate.cs" />
      <Compile Include="Assets\Scripts\ExpandClippingPlane.cs" />
+     <Compile Include="Assets\Scripts\HighlightInAndOut.cs" />
      <Compile Include="Assets\Scripts\LightEmUp.cs" />
      <Compile Include="Assets\Scripts\Selectable.cs" />
      <Compile Include="Assets\Scripts\StateManager.cs" />

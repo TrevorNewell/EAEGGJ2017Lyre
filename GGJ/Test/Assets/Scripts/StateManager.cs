@@ -19,6 +19,7 @@ public class StateManager : MonoBehaviour
     public GameObject[] screens;
     private GameObject mainMenu;
     private GameObject pressStartMenu;
+    private GameObject[] colorCams;
     public GameObject pauseMenu;
     public GameObject HUD;
 
@@ -52,6 +53,13 @@ public class StateManager : MonoBehaviour
                 Cursor.visible = false;
 
                 DeactivateAll();
+                if (colorCams != null)
+                {
+                    foreach (GameObject g in colorCams)
+                    {
+                        g.SetActive(true);
+                    }
+                }
                 if (HUD != null) HUD.SetActive(true);
 
                 Time.timeScale = 1.0f;
@@ -62,6 +70,11 @@ public class StateManager : MonoBehaviour
                 Cursor.visible = true;
 
                 DeactivateAll();
+                colorCams = GameObject.FindGameObjectsWithTag("ColorCam");
+                foreach (GameObject c in colorCams)
+                {
+                    c.SetActive(false);
+                }
                 pauseMenu.SetActive(true);
 
                 Time.timeScale = 0.0f;
@@ -134,7 +147,6 @@ public class StateManager : MonoBehaviour
                     g.SetActive(false);
                 }
             }
-            
         }
 
         instance = this;

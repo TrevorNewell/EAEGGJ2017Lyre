@@ -38,6 +38,7 @@ public class ExpandAndRotate : MonoBehaviour
     {
         //if (Input.GetKeyDown(KeyCode.Space)) Activate(); // This will be called later.  Here for testing only.
 
+        if (StateManager.instance.TheState == StateManager.State.Pause) return;
         if (isActive)
         {
             int i = 0;

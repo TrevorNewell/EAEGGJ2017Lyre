@@ -41,6 +41,8 @@ public class LightEmUp : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
+        if (StateManager.instance.TheState == StateManager.State.Pause) return;
+
         if (currentColor != -1)
         {
             if (ranges[currentColor] < maxRange)
@@ -90,9 +92,10 @@ public class LightEmUp : MonoBehaviour
                 Activate(-1);
         }*/
 
-        for (int i = 0; i < colorCount; i++)
+        for (int i = 1; i < colorCount + 1; i++)
         {
-            if (Input.GetKeyDown((KeyCode)(48 + i)))
+            //if (Input.GetKeyDown((KeyCode)(48 + i)))
+            if (Input.GetMouseButtonDown(i - 1))
             {
                 if (currentColor != i)
                 {
