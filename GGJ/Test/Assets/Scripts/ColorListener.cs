@@ -5,6 +5,8 @@ public class ColorListener : MonoBehaviour
 {
     public bool isActive;
 
+    public bool activateImmediately = false;
+
     public int colorValue;    // For simplicity, 1 corresponds to Red, 2 corresponds to Blue
 
 
@@ -71,7 +73,7 @@ public class ColorListener : MonoBehaviour
 
     public void DetermineActivity()
     {
-        if (CalculateDistance() <= currentRange && colorValue == theScript.currentColor)
+        if ((CalculateDistance() <= currentRange || activateImmediately) && colorValue == theScript.currentColor)
         {
             gameObject.GetComponent<MeshRenderer>().materials = activeMaterialArray;
 
