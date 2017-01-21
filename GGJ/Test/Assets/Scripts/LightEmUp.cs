@@ -12,9 +12,13 @@ public class LightEmUp : MonoBehaviour
 
     private AudioSource theAudioSource;
 
+    private ExpandAndRotate[] expandScripts;
+
 	// Use this for initialization
 	void Start ()
     {
+        expandScripts = FindObjectsOfType<ExpandAndRotate>();
+
         theAudioSource = GetComponent<AudioSource>();
 	}
 	
@@ -53,6 +57,18 @@ public class LightEmUp : MonoBehaviour
         {
             currentRange = 0;
             currentColor = color;
+
+            foreach (ExpandAndRotate e in expandScripts)
+            {
+                if (e.colorID == currentColor)
+                {
+                    e.Activate();
+                }
+                else
+                {
+                    e.Deactivate();
+                }
+            }
 
             if (tracks.Length >= 3) // I assume this has 3 tracks for now.  1 for the first string, 2 for the second string, 3 for no string being played.
             {
