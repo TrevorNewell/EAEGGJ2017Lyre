@@ -48,7 +48,8 @@ public class ExpandClippingPlane : MonoBehaviour
         }
         else
         {
-            if (Input.GetKeyDown(actualKeyCode) && !overrider)
+            //if (Input.GetKeyDown(actualKeyCode) && !overrider)
+            if (Input.GetMouseButtonDown(keyToExpand - 1) && !overrider)
                 expand = !expand;
             overrider = false;
         }

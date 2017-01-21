@@ -21,6 +21,11 @@ public class Selectable : MonoBehaviour
         selected = false;
     }
 
+    public void Click()
+    {
+        Destroy(gameObject);
+    }
+
     public bool GetSelected()
     {
         return selected;

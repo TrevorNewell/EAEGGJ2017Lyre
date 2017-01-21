@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Clicker : MonoBehaviour
 {
+    public float rangeToPick = 1.5f;
     private GameObject lastSelected;
 	// Use this for initialization
 	void Start ()
@@ -30,6 +31,14 @@ public class Clicker : MonoBehaviour
                 if (!lastSelected.GetComponent<Selectable>().GetSelected())
                 {
                     lastSelected.GetComponent<Selectable>().Select();
+                }
+                
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    if (hit.distance < rangeToPick)
+                    {
+                        lastSelected.GetComponent<Selectable>().Click();
+                    }
                 }
             }
         }
