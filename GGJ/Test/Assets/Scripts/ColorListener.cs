@@ -6,6 +6,7 @@ public class ColorListener : MonoBehaviour
     public bool isActive;
 
     public bool activateImmediately = false;
+    public bool fader = false;
 
     public int colorValue;    // For simplicity, 1 corresponds to Red, 2 corresponds to Blue
 
@@ -49,7 +50,7 @@ public class ColorListener : MonoBehaviour
     {
         bool currentlyActive = isActive;
 
-        currentRange = theScript.currentRange;
+        currentRange = theScript.GetRangeByColorID(colorValue);
 
         DetermineActivity();
 
@@ -57,7 +58,7 @@ public class ColorListener : MonoBehaviour
         {
             temp += Time.deltaTime;
 
-            if (temp >= overlap || CalculateDistance() > currentRange)
+            if (temp >= overlap || (CalculateDistance() > currentRange && !fader))
             {
                 countdownActive = false;
                 gameObject.GetComponent<MeshRenderer>().materials = defaultMaterialArray;

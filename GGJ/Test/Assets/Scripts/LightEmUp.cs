@@ -7,6 +7,7 @@ public class LightEmUp : MonoBehaviour
     public int currentColor = -1;    // For simplicity, 1 corresponds to Red, 2 corresponds to Blue
     public float maxRange = 100;
     public float expansionRate = 0.1f;
+    public float retractionRate = 0.1f;
     public float overlapTime = 2.0f; // How long after being disabled, is an object still lit up?
     public float currentRange = 0.0f;
 
@@ -40,17 +41,34 @@ public class LightEmUp : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        if (currentRange < maxRange)
+        if (currentColor != -1)
         {
-            currentRange += expansionRate;
+            if (ranges[currentColor] < maxRange)
+            {
+                ranges[currentColor] += expansionRate;
+            }
+
+            if (ranges[currentColor] > maxRange)
+            {
+                ranges[currentColor] = maxRange;
+            }
         }
 
-        if (currentRange > maxRange)
+        for (int i = 0; i < colorCount; i++)
         {
-            currentRange = maxRange;
+            if (i == currentColor)
+                continue;
+            if (ranges[i] > 0)
+            {
+                ranges[i] -= retractionRate;
+            }
+            else
+            {
+                ranges[i] = 0;
+            }
         }
 
-	    if (Input.GetKeyDown(KeyCode.Alpha1))
+	    /*if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             if (currentColor != 1)
                 Activate(1);
@@ -70,17 +88,38 @@ public class LightEmUp : MonoBehaviour
                 Activate(3);
             else
                 Activate(-1);
+        }*/
+
+        for (int i = 0; i < colorCount; i++)
+        {
+            if (Input.GetKeyDown((KeyCode)(48 + i)))
+            {
+                if (currentColor != i)
+                {
+                    Activate(i);
+                }
+                else
+                {
+                    Activate(-1);
+                }
+                break;
+            }
         }
 
         //Debug.Log("Color: " + currentColor + " Range: " + currentRange);
 	}
 
+    public float GetRangeByColorID(int i)
+    {
+        return ranges[i];
+    }
+
     public void Activate(int color)
     {
         if (currentColor != color)
         {
-            currentRange = 0;
             currentColor = color;
+            if (currentColor != -1) ranges[currentColor] = 0;
 
             foreach (ExpandAndRotate e in expandScripts)
             {
