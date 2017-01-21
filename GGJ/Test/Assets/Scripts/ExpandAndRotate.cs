@@ -62,7 +62,7 @@ public class ExpandAndRotate : MonoBehaviour
                 if (objects[i].transform.localScale.x > originalScale[i].x) objects[i].transform.localScale = new Vector3(objects[i].transform.localScale.x - retractionRate, objects[i].transform.localScale.y, objects[i].transform.localScale.z - retractionRate);
                 else
                 {
-                    if (i == objects.Length - 1) retracting = false;
+                    retracting = false;
                     isActive = false;
                     objects[i].SetActive(false);
                 }
