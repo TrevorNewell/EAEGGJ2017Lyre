@@ -57,7 +57,7 @@ public class ColorListener : MonoBehaviour
         {
             temp += Time.deltaTime;
 
-            if (temp >= overlap)
+            if (temp >= overlap || CalculateDistance() > currentRange)
             {
                 countdownActive = false;
                 gameObject.GetComponent<MeshRenderer>().materials = defaultMaterialArray;
