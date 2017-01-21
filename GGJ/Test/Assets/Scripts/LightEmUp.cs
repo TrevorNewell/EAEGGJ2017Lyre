@@ -41,6 +41,8 @@ public class LightEmUp : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
+        if (StateManager.instance.TheState == StateManager.State.Pause) return;
+
         if (currentColor != -1)
         {
             if (ranges[currentColor] < maxRange)
