@@ -4,22 +4,37 @@ using System.Collections;
 public class LightEmUp : MonoBehaviour
 {
     public AudioClip[] tracks;
-    public int currentColor = 0;    // For simplicity, 1 corresponds to Red, 2 corresponds to Blue
+    public int currentColor = -1;    // For simplicity, 1 corresponds to Red, 2 corresponds to Blue
     public float maxRange = 100;
     public float expansionRate = 0.1f;
     public float overlapTime = 2.0f; // How long after being disabled, is an object still lit up?
     public float currentRange = 0.0f;
 
+    [Range(1,10)] public int colorCount = 3;
+    private int[] colors;
+    private float[] ranges;
+
     private AudioSource theAudioSource;
 
     private ExpandAndRotate[] expandScripts;
+    private ExpandClippingPlane[] expandClipping;
 
 	// Use this for initialization
 	void Start ()
     {
         expandScripts = FindObjectsOfType<ExpandAndRotate>();
+        expandClipping = FindObjectsOfType<ExpandClippingPlane>();
 
         theAudioSource = GetComponent<AudioSource>();
+        
+        colors = new int[colorCount];
+        ranges = new float[colorCount];
+
+        for (int i = 0; i < colorCount; i++)
+        {
+            colors[i] = 48 + i;
+            ranges[i] = 0.0f;
+        }
 	}
 	
 	// Update is called once per frame
@@ -35,17 +50,26 @@ public class LightEmUp : MonoBehaviour
             currentRange = maxRange;
         }
 
-	    if (Input.GetKeyDown(KeyCode.Alpha1) && currentColor != 1)
+	    if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            Activate(1);
+            if (currentColor != 1)
+                Activate(1);
+            else
+                Activate(-1);
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha2) && currentColor != 2)
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            Activate(2);
+            if (currentColor != 2)
+                Activate(2);
+            else
+                Activate(-1);
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha3) && currentColor != 3)
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            Activate(3);
+            if (currentColor != 3)
+                Activate(3);
+            else
+                Activate(-1);
         }
 
         //Debug.Log("Color: " + currentColor + " Range: " + currentRange);
@@ -67,6 +91,14 @@ public class LightEmUp : MonoBehaviour
                 else
                 {
                     e.Deactivate();
+                }
+            }
+
+            foreach (ExpandClippingPlane e in expandClipping)
+            {
+                if (e.keyToExpand != currentColor)
+                {
+                    e.Retract();
                 }
             }
 

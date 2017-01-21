@@ -10,6 +10,7 @@ public class ExpandClippingPlane : MonoBehaviour
     public bool holdToExpand = false;
     private KeyCode actualKeyCode = KeyCode.Alpha1;
     private bool expand = false;
+    private bool overrider = false;
     private Camera thisCam;
     private float startClip;
     private float currentClip;
@@ -31,6 +32,13 @@ public class ExpandClippingPlane : MonoBehaviour
         currentClip = startClip;
     }
 
+    public void Retract()
+    {
+        expand = false;
+        overrider = true;
+        
+    }
+
 	// Update is called once per frame
 	void Update ()
     {
@@ -40,8 +48,9 @@ public class ExpandClippingPlane : MonoBehaviour
         }
         else
         {
-            if (Input.GetKeyDown(actualKeyCode))
+            if (Input.GetKeyDown(actualKeyCode) && !overrider)
                 expand = !expand;
+            overrider = false;
         }
 	    if (expand)
         {
