@@ -19,9 +19,12 @@ public class StateManager : MonoBehaviour
     public GameObject[] screens;
     private GameObject mainMenu;
     private GameObject pressStartMenu;
+    private GameObject pauseMenu;
+    private GameObject HUD;
+    private GameObject creditScreen;
+
     private GameObject[] colorCams;
-    public GameObject pauseMenu;
-    public GameObject HUD;
+
 
     public State TheState
     {
@@ -84,6 +87,7 @@ public class StateManager : MonoBehaviour
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
 
+                LoadLevel("CreditScene");
             }
             else
             {
@@ -148,6 +152,25 @@ public class StateManager : MonoBehaviour
                 }
             }
         }
+        else if (SceneManager.GetActiveScene().name.CompareTo("CreditScene") == 0)
+        {
+            Debug.Log("Credit Scene");
+            TheState = State.Credits;
+
+            foreach (GameObject g in screens)
+            {
+                if (g.name.CompareTo("CreditScreen") == 0)
+                {
+                    creditScreen = g;
+                    g.SetActive(true);
+                    g.GetComponent<Scroll>().StartScroll();
+                }
+                else
+                {
+                    g.SetActive(false);
+                }
+            }
+        }
 
         instance = this;
     }
@@ -159,12 +182,16 @@ public class StateManager : MonoBehaviour
 
         if (TheState == State.InGame && Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.P)) TheState = State.Pause;
         else if (TheState == State.Pause && Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.P)) TheState = State.InGame;
-
     }
 
     public void Unpause()
     {
         TheState = State.InGame;
+    }
+
+    public void StartCredits()
+    {
+        TheState = State.Credits;
     }
 
     private void DeactivateAll()
