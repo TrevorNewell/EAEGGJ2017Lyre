@@ -45,10 +45,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\Clicker.cs" />
      <Compile Include="Assets\Scripts\ColorListener.cs" />
      <Compile Include="Assets\Scripts\ExpandAndRotate.cs" />
      <Compile Include="Assets\Scripts\ExpandClippingPlane.cs" />
      <Compile Include="Assets\Scripts\LightEmUp.cs" />
+     <Compile Include="Assets\Scripts\Selectable.cs" />
      <None Include="Assets\Standard Assets\Environment\Water\Water4\Shaders\FXWater4Simple.shader" />
      <None Include="Assets\Standard Assets\Environment\Water (Basic)\Shaders\FXWaterBasic.shader" />
      <None Include="Assets\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
