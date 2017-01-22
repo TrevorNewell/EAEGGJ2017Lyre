@@ -39,6 +39,7 @@ public class ExpandAndRotate : MonoBehaviour
         //if (Input.GetKeyDown(KeyCode.Space)) Activate(); // This will be called later.  Here for testing only.
 
         if (StateManager.instance.TheState == StateManager.State.Pause) return;
+
         if (isActive)
         {
             int i = 0;
@@ -62,7 +63,7 @@ public class ExpandAndRotate : MonoBehaviour
                 if (objects[i].transform.localScale.x > originalScale[i].x) objects[i].transform.localScale = new Vector3(objects[i].transform.localScale.x - retractionRate, objects[i].transform.localScale.y, objects[i].transform.localScale.z - retractionRate);
                 else
                 {
-                    retracting = false;
+                    if (i == objects.Length) retracting = false;
                     isActive = false;
                     objects[i].SetActive(false);
                 }

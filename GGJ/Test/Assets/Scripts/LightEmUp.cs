@@ -11,6 +11,12 @@ public class LightEmUp : MonoBehaviour
     public float overlapTime = 2.0f; // How long after being disabled, is an object still lit up?
     public float currentRange = 0.0f;
 
+    public bool hasBlue = false;
+    public bool hasRed = false;
+    public bool hasGreen = false;
+
+    public GameObject lyre;
+
     [Range(1,10)] public int colorCount = 3;
     private int[] colors;
     private float[] ranges;
@@ -19,10 +25,12 @@ public class LightEmUp : MonoBehaviour
 
     private ExpandAndRotate[] expandScripts;
     private ExpandClippingPlane[] expandClipping;
+    private LyreActivation theLyreScript;
 
 	// Use this for initialization
 	void Start ()
     {
+        theLyreScript = FindObjectOfType<LyreActivation>();
         expandScripts = FindObjectsOfType<ExpandAndRotate>();
         expandClipping = FindObjectsOfType<ExpandClippingPlane>();
 
@@ -117,40 +125,79 @@ public class LightEmUp : MonoBehaviour
         return ranges[i];
     }
 
+    public void Reset()
+    {
+        Activate(-1);
+    }
+
     public void Activate(int color)
     {
-        if (currentColor != color)
+        if ((color == 1 && hasRed) || (color == 2 && hasBlue) || (color == 3 && hasGreen))
         {
-            currentColor = color;
-            if (currentColor != -1) ranges[currentColor] = 0;
-
-            foreach (ExpandAndRotate e in expandScripts)
+            if (currentColor != color)
             {
-                if (e.colorID == currentColor)
+                //if (currentColor > 0 && currentColor < 4)
                 {
-                    e.Activate();
+                //    theLyreScript.DeActivateString(currentColor);
+                 //   theLyreScript.ActivateString(color);
                 }
-                else
-                {
-                    e.Deactivate();
-                }
-            }
 
-            foreach (ExpandClippingPlane e in expandClipping)
-            {
-                if (e.keyToExpand != currentColor)
-                {
-                    e.Retract();
-                }
-            }
+                currentColor = color;
 
-            if (tracks.Length >= 3) // I assume this has 3 tracks for now.  1 for the first string, 2 for the second string, 3 for no string being played.
-            {
-                theAudioSource.Stop();
-                theAudioSource.clip = tracks[currentColor - 1];
-                theAudioSource.Play();
+                if (currentColor != -1) ranges[currentColor] = 0;
+
+                foreach (ExpandAndRotate e in expandScripts)
+                {
+                    if (e.colorID == currentColor)
+                    {
+                        e.Activate();
+                    }
+                    else
+                    {
+                        e.Deactivate();
+                    }
+                }
+
+                foreach (ExpandClippingPlane e in expandClipping)
+                {
+                    if (e.keyToExpand != currentColor)
+                    {
+                        e.Retract();
+                    }
+                }
+
+                if (tracks.Length >= 3) // I assume this has 3 tracks for now.  1 for the first string, 2 for the second string, 3 for no string being played.
+                {
+                    theAudioSource.Stop();
+                    theAudioSource.clip = tracks[currentColor - 1];
+                    theAudioSource.Play();
+                }
             }
         }
+    }
+
+    public void GetColor(int i)
+    {
+        lyre.GetComponent<MeshRenderer>().enabled = true;
+
+        if (i == 1)
+        {
+            hasRed = true;
+        }
+        else if (i == 2)
+        {
+            hasBlue = true;
+        }
+        else if (i == 3)
+        {
+            hasGreen = true;
+        }
+        else
+        {
+            Debug.Log("THE FUCK IS THIS?!");
+        }
+
+        FindObjectOfType<LyreActivation>().UpdateStringVisibility();
     }
 
 }
