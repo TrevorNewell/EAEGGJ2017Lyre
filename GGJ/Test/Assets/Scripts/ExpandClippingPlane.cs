@@ -11,6 +11,7 @@ public class ExpandClippingPlane : MonoBehaviour
     private KeyCode actualKeyCode = KeyCode.Alpha1;
     private bool expand = false;
     private bool overrider = false;
+    private bool hasColor = false;
     private Camera thisCam;
     private float startClip;
     private float currentClip;
@@ -32,6 +33,11 @@ public class ExpandClippingPlane : MonoBehaviour
         currentClip = startClip;
     }
 
+    public void GetColor()
+    {
+        hasColor = true;
+    }
+
     public void Retract()
     {
         expand = false;
@@ -49,7 +55,7 @@ public class ExpandClippingPlane : MonoBehaviour
         else
         {
             //if (Input.GetKeyDown(actualKeyCode) && !overrider)
-            if (Input.GetMouseButtonDown(keyToExpand - 1) && !overrider)
+            if (Input.GetMouseButtonDown(keyToExpand - 1) && !overrider && hasColor)
                 expand = !expand;
             overrider = false;
         }

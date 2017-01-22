@@ -161,7 +161,9 @@ public class LightEmUp : MonoBehaviour
                     }
                     else
                     {
-                        e.Deactivate();
+                        if (e.colorID == 1 && hasRed) e.Deactivate();
+                        if (e.colorID == 2 && hasBlue) e.Deactivate();
+                        if (e.colorID == 3 && hasGreen) e.Deactivate();
                     }
                 }
 
@@ -199,14 +201,21 @@ public class LightEmUp : MonoBehaviour
         }
         else
         {
-            currentColor = -1;
+            //currentColor = -1;
         }
     }
 
     public void GetColor(int i)
     {
         lyre.GetComponent<MeshRenderer>().enabled = true;
-
+        foreach (ExpandClippingPlane e in expandClipping)
+        {
+            if (e.keyToExpand == i)
+            {
+                e.GetColor();
+                break;
+            }
+        }
         if (i == 1)
         {
             hasRed = true;
