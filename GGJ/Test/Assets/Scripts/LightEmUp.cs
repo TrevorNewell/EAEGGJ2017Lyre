@@ -1,11 +1,9 @@
 ﻿using UnityEngine;
-using UnityEngine.Audio;
 using System.Collections;
 
 public class LightEmUp : MonoBehaviour
 {
-    public AudioMixerSnapshot[] tracks;
-    public AudioMixer mixer;
+    public AudioClip[] tracks;
     public int currentColor = -1;    // For simplicity, 1 corresponds to Red, 2 corresponds to Blue
     public float maxRange = 100;
     public float expansionRate = 0.1f;
@@ -172,26 +170,11 @@ public class LightEmUp : MonoBehaviour
                     }
                 }
 
-                /*if (tracks.Length >= 3) // I assume this has 3 tracks for now.  1 for the first string, 2 for the second string, 3 for no string being played.
+                if (tracks.Length >= 3) // I assume this has 3 tracks for now.  1 for the first string, 2 for the second string, 3 for no string being played.
                 {
                     theAudioSource.Stop();
                     theAudioSource.clip = tracks[currentColor - 1];
                     theAudioSource.Play();
-                }*/
-                switch (currentColor)
-                {
-                    case -1:
-                        mixer.TransitionToSnapshots(tracks, new float[4] { 1.0f, 0.0f, 0.0f, 0.0f }, 2.0f);
-                        break;
-                    case 1:
-                        mixer.TransitionToSnapshots(tracks, new float[4] { 0.0f, 1.0f, 0.0f, 0.0f }, 2.0f);
-                        break;
-                    case 2:
-                        mixer.TransitionToSnapshots(tracks, new float[4] { 0.0f, 0.0f, 1.0f, 0.0f }, 2.0f);
-                        break;
-                    case 3:
-                        mixer.TransitionToSnapshots(tracks, new float[4] { 0.0f, 0.0f, 0.0f, 1.0f }, 2.0f);
-                        break;
                 }
             }
         }
