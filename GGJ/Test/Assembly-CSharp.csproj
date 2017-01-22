@@ -45,6 +45,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\FadeScript.cs" />
      <Compile Include="Assets\Scripts\Clicker.cs" />
      <Compile Include="Assets\Scripts\ColorListener.cs" />
      <Compile Include="Assets\Scripts\ExpandAndRotate.cs" />
@@ -58,6 +59,7 @@
      <Compile Include="Assets\Scripts\StateManager.cs" />
      <Compile Include="Assets\Scripts\WalkSoundHelper.cs" />
      <Compile Include="Assets\Scripts\WaterSpin.cs" />
+     <Compile Include="Assets\ShowStatusText.cs" />
      <None Include="Assets\Standard Assets\Environment\Water\Water4\Shaders\FXWater4Simple.shader" />
      <None Include="Assets\Standard Assets\Environment\Water (Basic)\Shaders\FXWaterBasic.shader" />
      <None Include="Assets\Fonts\Frank_Ruhl_Libre\OFL.txt" />

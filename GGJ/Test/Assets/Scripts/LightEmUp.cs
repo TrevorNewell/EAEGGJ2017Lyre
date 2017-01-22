@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
 using UnityEngine.Audio;
 using System.Collections;
+using UnityEngine.UI;
 
 public class LightEmUp : MonoBehaviour
 {
+    public Text theText;
+
     public AudioMixerSnapshot[] tracks;
     public AudioMixer mixer;
     public float audioTransitionTime = 1f;
@@ -219,14 +222,20 @@ public class LightEmUp : MonoBehaviour
         if (i == 1)
         {
             hasRed = true;
+            FindObjectOfType<ShowStatusText>().DisplayMessage("You can now left-click.");
         }
         else if (i == 2)
         {
             hasBlue = true;
+
+            FindObjectOfType<ShowStatusText>().DisplayMessage("You can now right-click.");
         }
         else if (i == 3)
         {
             hasGreen = true;
+
+            FindObjectOfType<ShowStatusText>().DisplayMessage("You can now middle-click.");
+
         }
         else
         {
