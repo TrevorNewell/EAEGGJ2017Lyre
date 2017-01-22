@@ -91,7 +91,7 @@ public class LyreActivation : MonoBehaviour
         //else
        // if (activeString != colorID)
         //{
-            Debug.Log("Jk, I'm here: " + colorID);
+        //Debug.Log("Jk, I'm here: " + colorID);
 
             activeString = colorID;
             if (colorID == 1)
