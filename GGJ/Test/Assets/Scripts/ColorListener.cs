@@ -31,7 +31,11 @@ public class ColorListener : MonoBehaviour
 	void Start ()
     {
         theScript = GameObject.FindGameObjectWithTag("Player").GetComponent<LightEmUp>();
-        defaultMaterial = gameObject.GetComponent<MeshRenderer>().materials[0];
+
+        Material[] materialTemp = new Material[1];
+        materialTemp[0] = defaultMaterial;
+        gameObject.GetComponent<MeshRenderer>().materials = materialTemp;
+
         currentRange = 0;
 
         overlap = theScript.overlapTime;
@@ -58,7 +62,7 @@ public class ColorListener : MonoBehaviour
         {
             temp += Time.deltaTime;
 
-            if (temp >= overlap || (CalculateDistance() > currentRange && !fader))
+            if (temp >= overlap)//
             {
                 countdownActive = false;
                 gameObject.GetComponent<MeshRenderer>().materials = defaultMaterialArray;
@@ -86,6 +90,7 @@ public class ColorListener : MonoBehaviour
         {
             if (isActive)
             {
+                Debug.Log("W'e;lkjwe");
                 temp = 0;
                 countdownActive = true;
             }

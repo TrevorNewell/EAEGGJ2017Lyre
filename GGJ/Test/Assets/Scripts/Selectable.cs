@@ -7,6 +7,8 @@ public class Selectable : MonoBehaviour
     public int defaultLayer = 0;
     private bool selected = false;
 
+    public int givesColor = -1;
+
     public void Select()
     {
         highlight.SetActive(true);
@@ -23,7 +25,8 @@ public class Selectable : MonoBehaviour
 
     public void Click()
     {
-        Destroy(gameObject);
+        if (givesColor > 0 && givesColor < 4) FindObjectOfType<LightEmUp>().GetColor(givesColor);
+        gameObject.SetActive(false);//Destroy(gameObject);
     }
 
     public bool GetSelected()

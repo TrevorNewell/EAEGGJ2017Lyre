@@ -129,7 +129,7 @@ public class StateManager : MonoBehaviour
                 }
             }
         }
-        else if (SceneManager.GetActiveScene().name.CompareTo("FirstLevel") == 0)
+        else if (SceneManager.GetActiveScene().name.CompareTo("AshtonsLevel") == 0)
         {
             Debug.Log("InGame");
             TheState = State.InGame;
