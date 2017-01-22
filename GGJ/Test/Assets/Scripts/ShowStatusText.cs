@@ -4,8 +4,14 @@ using UnityEngine.UI;
 
 public class ShowStatusText : MonoBehaviour
 {
+    public bool isTrigger; 
     public Text theTextObject;
     public Animator theController;
+
+    void OnTriggerEnter(Collider col)
+    {
+        if (col.tag == "Player" && isTrigger) DisplayMessage("Level Complete");
+    }
 
 	// Use this for initialization
 	void Start ()

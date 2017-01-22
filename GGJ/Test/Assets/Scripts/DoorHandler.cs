@@ -11,7 +11,7 @@ public class DoorHandler : MonoBehaviour
     {
         if (c.tag == "Player")
         {
-            if (key == null && knob == null)
+            if (!key.activeInHierarchy /*&& !knob.activeInHierarchy*/)
             {
                 Destroy(door);
             }
