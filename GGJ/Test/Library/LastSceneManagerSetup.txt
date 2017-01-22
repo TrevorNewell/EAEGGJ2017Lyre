@@ -1,8 +1,4 @@
 sceneSetups:
-<<<<<<< HEAD
-- path: Assets/Scenes/CreditScene.unity
-=======
 - path: Assets/Scenes/AshtonsLevel.unity
->>>>>>> origin/master
   isLoaded: 1
   isActive: 1
