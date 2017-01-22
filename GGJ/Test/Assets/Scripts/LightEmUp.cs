@@ -17,6 +17,9 @@ public class LightEmUp : MonoBehaviour
     public float overlapTime = 2.0f; // How long after being disabled, is an object still lit up?
     public float currentRange = 0.0f;
 
+    public Light ourLight;
+    public ParticleSystem theBats;
+
     public bool hasBlue = false;
     public bool hasRed = false;
     public bool hasGreen = false;
@@ -36,6 +39,9 @@ public class LightEmUp : MonoBehaviour
 	// Use this for initialization
 	void Start ()
     {
+        ourLight.enabled = false;
+        theBats.enableEmission = false;
+
         theLyreScript = FindObjectOfType<LyreActivation>();
         expandScripts = FindObjectsOfType<ExpandAndRotate>();
         expandClipping = FindObjectsOfType<ExpandClippingPlane>();
@@ -144,10 +150,16 @@ public class LightEmUp : MonoBehaviour
             {
                 //theLyreScript.DeActivateString(currentColor);
                 theLyreScript.ActivateString(color);
+
+                ourLight.enabled = true;
+                theBats.enableEmission = true;
             }
             else if (color == -1)
             {
                 theLyreScript.DeActivateString(currentColor);
+
+                ourLight.enabled = false;
+                theBats.enableEmission = false;
             }
 
             if (currentColor != color)
