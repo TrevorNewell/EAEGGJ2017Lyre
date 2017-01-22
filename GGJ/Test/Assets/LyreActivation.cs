@@ -79,14 +79,21 @@ public class LyreActivation : MonoBehaviour
 
     public void ActivateString(int colorID)
     {
-        if (activeString == colorID)
+        DeActivateString(activeString);
+        //if (activeString == colorID)
         {
-            DeActivateString(colorID);
+          //  Debug.Log("Here I am, a;lkj");
 
-            activeString = -1;
+          //  DeActivateString(colorID);
+
+          //  activeString = -1;
         }
-        else if (activeString != colorID)
-        {
+        //else
+       // if (activeString != colorID)
+        //{
+            Debug.Log("Jk, I'm here: " + colorID);
+
+            activeString = colorID;
             if (colorID == 1)
             {
                 Material[] temp = new Material[1];
@@ -106,6 +113,14 @@ public class LyreActivation : MonoBehaviour
                 temp[0] = newGreenMaterial;
                 greenString.GetComponent<MeshRenderer>().materials = temp;
             }
+            else
+            {
+
+            }
+        //}
+        //else
+        {
+           // Debug.Log("I'm not being activated.");
         }
     }
 

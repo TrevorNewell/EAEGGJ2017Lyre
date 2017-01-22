@@ -134,19 +134,18 @@ public class LightEmUp : MonoBehaviour
     {
         if ((color == 1 && hasRed) || (color == 2 && hasBlue) || (color == 3 && hasGreen) || color == -1)
         {
+            if (color > 0 && color < 4)
+            {
+                //theLyreScript.DeActivateString(currentColor);
+                theLyreScript.ActivateString(color);
+            }
+            else if (color == -1)
+            {
+                theLyreScript.DeActivateString(currentColor);
+            }
+
             if (currentColor != color)
             {
-                if (currentColor > 0 && currentColor < 4)
-                {
-                    //theLyreScript.DeActivateString(currentColor);
-                    //theLyreScript.ActivateString(color);
-                }
-
-                if (color == -1)
-                {
-                    //theLyreScript.DeActivateString(currentColor);
-                }
-
                 currentColor = color;
 
                 if (currentColor != -1) ranges[currentColor] = 0;
