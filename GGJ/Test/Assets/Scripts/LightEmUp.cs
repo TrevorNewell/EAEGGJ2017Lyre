@@ -40,7 +40,6 @@ public class LightEmUp : MonoBehaviour
 	void Start ()
     {
         ourLight.enabled = false;
-        theBats.enableEmission = false;
 
         theLyreScript = FindObjectOfType<LyreActivation>();
         expandScripts = FindObjectsOfType<ExpandAndRotate>();
@@ -152,14 +151,21 @@ public class LightEmUp : MonoBehaviour
                 theLyreScript.ActivateString(color);
 
                 ourLight.enabled = true;
-                theBats.enableEmission = true;
+                if (!theBats.isPlaying)
+                {
+                    theBats.Play();
+                }
             }
             else if (color == -1)
             {
                 theLyreScript.DeActivateString(currentColor);
 
                 ourLight.enabled = false;
-                theBats.enableEmission = false;
+                if (theBats.isPlaying)
+                {
+                    theBats.SetParticles(new ParticleSystem.Particle[0], 0);
+                    theBats.Pause();
+                }
             }
 
             if (currentColor != color)
