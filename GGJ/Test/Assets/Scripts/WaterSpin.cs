@@ -3,27 +3,23 @@ using System.Collections;
 
 public class WaterSpin : MonoBehaviour
 {
-    public float sinScaleFactor = 0.5f;
+    public float radius = 30f;
     public float angle = 45f;
-    public float anglesPerSecond = 1f;
-    public bool xAxis = true;
-	
+    public float anglesPerSecond = 1;
+
+    private Vector3 originalPosition;
+
+    void Start()
+    {
+        originalPosition = transform.position;
+    }
+
 	// Update is called once per frame
 	void Update ()
     {
-	    if (xAxis)
-        {
-            angle += anglesPerSecond;
-            if (angle >= 360)
-                angle = 0;
-            gameObject.transform.position = new Vector3(gameObject.transform.position.x + sinScaleFactor * Mathf.Sin(angle * Mathf.Deg2Rad) * Time.deltaTime, gameObject.transform.position.y, gameObject.transform.position.z);
-        }
-        else
-        {
-            angle += anglesPerSecond;
-            if (angle >= 360)
-                angle = 0;
-            gameObject.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z + sinScaleFactor * Mathf.Sin(angle * Mathf.Deg2Rad) * Time.deltaTime);
-        }
+        angle += anglesPerSecond * Time.deltaTime;
+        if (angle >= 360) angle = 0;
+        if (angle <= 0) angle = 360; 
+        transform.position = new Vector3(originalPosition.x + radius * Mathf.Cos(angle * Mathf.Deg2Rad), originalPosition.y, originalPosition.z + radius * Mathf.Sin(angle * Mathf.Deg2Rad));
 	}
 }
