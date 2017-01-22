@@ -47,6 +47,7 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\Clicker.cs" />
      <Compile Include="Assets\Scripts\ColorListener.cs" />
+     <Compile Include="Assets\Scripts\DoorHandler.cs" />
      <Compile Include="Assets\Scripts\ExpandAndRotate.cs" />
      <Compile Include="Assets\Scripts\ExpandClippingPlane.cs" />
      <Compile Include="Assets\Scripts\FadeScript.cs" />
@@ -54,6 +55,7 @@
      <Compile Include="Assets\Scripts\LightEmUp.cs" />
      <Compile Include="Assets\Scripts\LyreActivation.cs" />
      <Compile Include="Assets\Scripts\ResetPlayer.cs" />
+     <Compile Include="Assets\Scripts\Rotate.cs" />
      <Compile Include="Assets\Scripts\Scroll.cs" />
      <Compile Include="Assets\Scripts\Selectable.cs" />
      <Compile Include="Assets\Scripts\ShowStatusText.cs" />
