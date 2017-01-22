@@ -90,7 +90,6 @@ public class ColorListener : MonoBehaviour
         {
             if (isActive)
             {
-                Debug.Log("W'e;lkjwe");
                 temp = 0;
                 countdownActive = true;
             }
