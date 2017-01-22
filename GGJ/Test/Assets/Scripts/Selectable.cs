@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class Selectable : MonoBehaviour
 {
@@ -11,7 +10,18 @@ public class Selectable : MonoBehaviour
 
     public int givesColor = -1;
     public bool hasDisable = false;
-    public GameObject objectToDisable;
+    public string tagsToDisable = "";
+
+    public bool disableFireflyGroup = false;
+
+    public GameObject[] tagObjectsToDisable;
+    public GameObject[] objectToDisable;
+
+    void Start()
+    {
+        if (tagsToDisable != "")
+            tagObjectsToDisable = GameObject.FindGameObjectsWithTag(tagsToDisable);
+    }
 
     public void Select()
     {
@@ -35,7 +45,26 @@ public class Selectable : MonoBehaviour
         if (requiresColor == -1 || requiresColor == FindObjectOfType<LightEmUp>().currentColor)
         {
             if (givesColor > 0 && givesColor < 4) FindObjectOfType<LightEmUp>().GetColor(givesColor);
-            if (hasDisable) objectToDisable.SetActive(false);
+            if (hasDisable)
+            {
+                foreach (GameObject g in objectToDisable)
+                    g.SetActive(false);
+            }
+            if (tagsToDisable != "")
+            {
+                foreach (GameObject g in tagObjectsToDisable)
+                    g.SetActive(false);
+            }
+            if (disableFireflyGroup)
+            {
+                GameObject g = GameObject.FindGameObjectWithTag("FireflyGroup");
+                Transform[] theChildren = g.GetComponentsInChildren<Transform>();
+                foreach (Transform t in theChildren)
+                {
+                    t.gameObject.SetActive(false);
+                }
+            }
+
             gameObject.SetActive(false);//Destroy(gameObject);
         }
     }

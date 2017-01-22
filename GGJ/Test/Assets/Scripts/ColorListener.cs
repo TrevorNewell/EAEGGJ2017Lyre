@@ -10,11 +10,12 @@ public class ColorListener : MonoBehaviour
 
     public int colorValue;    // For simplicity, 1 corresponds to Red, 2 corresponds to Blue
 
-
     public Material defaultMaterial;
     public Material activeMaterial;
 
     public bool disableColliderIfInactive;
+    public bool disableColliderIfActive;
+
     public Collider theCollider;
     private Material[] defaultMaterialArray;
     private Material[] activeMaterialArray;
@@ -30,6 +31,7 @@ public class ColorListener : MonoBehaviour
 	// Use this for initialization
 	void Start ()
     {
+        theCollider = GetComponent<Collider>();
         theScript = GameObject.FindGameObjectWithTag("Player").GetComponent<LightEmUp>();
 
         Material[] materialTemp = new Material[1];
@@ -67,6 +69,8 @@ public class ColorListener : MonoBehaviour
                 countdownActive = false;
                 gameObject.GetComponent<MeshRenderer>().materials = defaultMaterialArray;
                 if (disableColliderIfInactive) theCollider.enabled = false;
+
+                if (disableColliderIfActive) theCollider.enabled = true;
             }
         }
     }
@@ -85,6 +89,8 @@ public class ColorListener : MonoBehaviour
             isActive = true;
 
             if (disableColliderIfInactive) theCollider.enabled = true;
+
+            if (disableColliderIfActive) theCollider.enabled = false;
         }
         else
         {
