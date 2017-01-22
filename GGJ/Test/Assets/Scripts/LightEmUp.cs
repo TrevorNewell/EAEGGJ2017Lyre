@@ -132,7 +132,7 @@ public class LightEmUp : MonoBehaviour
 
     public void Activate(int color)
     {
-        if ((color == 1 && hasRed) || (color == 2 && hasBlue) || (color == 3 && hasGreen))
+        if ((color == 1 && hasRed) || (color == 2 && hasBlue) || (color == 3 && hasGreen) || color == -1)
         {
             if (currentColor != color)
             {
@@ -173,6 +173,10 @@ public class LightEmUp : MonoBehaviour
                     theAudioSource.Play();
                 }
             }
+        }
+        else
+        {
+            currentColor = -1;
         }
     }
 
